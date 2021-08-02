@@ -38,7 +38,7 @@ public class File {
     @OneToOne
     @JoinColumn(
             nullable = false,
-            name = "user_id"
+            name = "id"
     )
     private User user;
 
