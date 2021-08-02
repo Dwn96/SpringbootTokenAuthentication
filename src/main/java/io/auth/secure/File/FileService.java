@@ -20,17 +20,8 @@ public class FileService {
         this.fileRepository = fileRepository;
     }
 
-    public String saveImage(MultipartFile multipartFile)  {
-        File file = new File();
-        file.setName(multipartFile.getOriginalFilename());
-        file.setContentType(multipartFile.getContentType());
-        try {
-            file.setData(multipartFile.getBytes());
-        }
-        catch (Exception e){
-            return  "Error getting bytes: " +e;
-        }
-        file.setSize(multipartFile.getSize());
+    public String saveImage(File file)  {
+
 
         fileRepository.save(file);
 

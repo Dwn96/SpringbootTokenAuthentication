@@ -28,9 +28,13 @@ public class File {
     )
 
     private Long id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String contentType;
+    @Column(nullable = false)
     private Long size;
+    @Column(nullable = false)
     @Lob
     private byte[] data;
 
@@ -38,10 +42,16 @@ public class File {
     @OneToOne
     @JoinColumn(
             nullable = false,
-            name = "id"
+            name = "owner_id"
     )
+
     private User user;
 
-
-
+    public File(String name, String contentType, Long size, byte[] data, User user) {
+        this.name = name;
+        this.contentType = contentType;
+        this.size = size;
+        this.data = data;
+        this.user = user;
+    }
 }

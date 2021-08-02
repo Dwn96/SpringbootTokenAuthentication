@@ -1,5 +1,6 @@
 package io.auth.secure.registration;
 
+import io.auth.secure.File.FileService;
 import io.auth.secure.email.EmailSender;
 import io.auth.secure.registration.token.ConfirmationToken;
 import io.auth.secure.registration.token.ConfirmationTokenService;
@@ -9,6 +10,7 @@ import io.auth.secure.user.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
@@ -19,8 +21,9 @@ public class RegistrationService {
     private final UserService userService;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
+    private final FileService fileService;
 
-    public String register(RegistrationRequest request) {
+    public String register(RegistrationRequest request, MultipartFile multipartFile) {
         boolean isValidEmail =  emailValidator.test(request.getEmail());
 
         if(!isValidEmail){
@@ -34,7 +37,7 @@ public class RegistrationService {
                     request.getEmail(),
                     request.getPassword(),
                     UserRole.USER
-                )
+                ),multipartFile
         );
         String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
         emailSender.send(request.getEmail(),
