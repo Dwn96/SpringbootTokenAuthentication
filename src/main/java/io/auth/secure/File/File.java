@@ -35,7 +35,6 @@ public class File {
     @Column(nullable = false)
     private Long size;
     @Column(nullable = false)
-    @Lob
     private byte[] data;
 
 
