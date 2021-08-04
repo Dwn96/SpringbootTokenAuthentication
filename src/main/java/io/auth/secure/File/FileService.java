@@ -32,4 +32,11 @@ public class FileService {
       return fileRepository.findById(user.getId());
     }
 
+
+    public Optional<File> findImagebyName (String name){
+        return fileRepository.findbyName(name);
+    }
+
+
+
 }

@@ -31,9 +31,9 @@ public class LoginService {
             boolean passwordMatch = bCryptPasswordEncoder.matches(loginRequest.getPassword(),encodedPassword);
 
             if (passwordMatch){
-                return "All good";
+                return "Success";
             }
-            else return  "Bad password";
+            else return  "Bad password and/or email. Try again";
 
 
         }

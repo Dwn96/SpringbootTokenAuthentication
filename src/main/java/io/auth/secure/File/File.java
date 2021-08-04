@@ -54,4 +54,11 @@ public class File {
         this.data = data;
         this.user = user;
     }
+
+    public File(String name, String contentType, Long size, byte[] data) {
+        this.name = name;
+        this.contentType = contentType;
+        this.size = size;
+        this.data = data;
+    }
 }
